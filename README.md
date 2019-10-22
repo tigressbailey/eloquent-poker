@@ -1,6 +1,6 @@
 # Eloquent Poker
 
-Open source grooming poker with the minimalist style.
+Open source planning poker with the minimalist style.
 
 [Site](https://eloquentpoker.com)
 
