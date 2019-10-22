@@ -1,0 +1,47 @@
+.app {
+  .members {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+
+  .member {
+    margin: 0 12px 20px 0;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    min-width: 160px;
+  }
+
+  .member .menu-item {
+    padding: 0;
+  }
+
+  .member .emoji-poker {
+    font-size: 40px;
+  }
+
+  .tile.tile-centered .tile-content {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+  }
+
+  .tile.tile-centered .tile-content.badge::after {
+    transition: all .3s;
+  }
+
+  .points {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 35px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

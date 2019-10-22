@@ -1,0 +1,8 @@
+build/
+coverage/
+fixtures/
+config/
+env/
+packages/
+public/
+scripts/

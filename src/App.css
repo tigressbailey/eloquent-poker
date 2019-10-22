@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts//fonts/Raleway-Light.eot');
+  src: url('/fonts/Raleway-Light.eot?#iefix') format('embedded-opentype'), url('/fonts/Raleway-Light.woff2') format('woff2'), url('/fonts/Raleway-Light.woff') format('woff'), url('/fonts/Raleway-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Regular.eot');
+  src: url('/fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'), url('/fonts/Montserrat-Regular.woff2') format('woff2'), url('/fonts/Montserrat-Regular.woff') format('woff'), url('/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.app {
+  min-height: 100vh;
+  min-width: 1024px;
+  padding: 20px 35px 0;
+  background: #f5f5f5;
+}
+
+
+

@@ -1,0 +1,12 @@
+# Third party
+**/node_modules
+
+# Misc
+src/serviceWorker.js
+scripts/
+config/
+
+# Build products
+build/
+coverage/
+fixtures/

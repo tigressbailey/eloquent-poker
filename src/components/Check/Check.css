@@ -1,0 +1,43 @@
+.app {
+  .btn-check {
+    position: relative;
+    padding: 0 14px;
+    font-size: 18px;
+    font-weight: 800;
+    height: auto;
+    border: 0;
+    background: none;
+    outline: 0;
+  }
+
+  .btn-check:focus,
+  .btn-check:hover {
+    background: none;
+    text-decoration: none;
+  }
+
+  .btn-check:before {
+    content: '[';
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform .2s ease-out;
+  }
+
+  .btn-check:after {
+    content: ']';
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: -webkit-transform .2s ease-out;
+    transition: transform .2s ease-out;
+  }
+
+  .btn-check:hover:before {
+    transform: translateX(-10px) translateZ(0);
+  }
+
+  .btn-check:hover:after {
+    transform: translateX(10px) translateZ(0);
+  }
+}

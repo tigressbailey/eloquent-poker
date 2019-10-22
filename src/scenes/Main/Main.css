@@ -1,0 +1,33 @@
+.app {
+  font-family: 'Raleway', sans-serif;
+
+  .columns {
+    color: rgba(0, 0, 0, .7);
+  }
+
+  .sitename {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .quote-poker {
+    margin-right: 0;
+  }
+
+  .cite-poker {
+    font-style: normal;
+  }
+
+  .btn-poker {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 15px 10px 0;
+  }
+
+  .btn-poker.btn.btn-action.btn-sm {
+    font-size: 12px;
+  }
+
+  .sidebar-poker {
+    min-width: 230px;
+  }
+}
