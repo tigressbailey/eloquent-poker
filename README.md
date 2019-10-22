@@ -49,4 +49,4 @@ Open source grooming poker with the minimalist style.
 
 * * *
 
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [GPL-3.0](LICENSE.md).
