@@ -151,7 +151,7 @@
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "3.6.3"
   },
-  "description": "Open source grooming poker with the eloquent style",
+  "description": "Open source grooming poker with the minimalist style",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tigressbailey/eloquent-poker.git"
