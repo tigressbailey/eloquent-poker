@@ -1,7 +1,7 @@
 {
   "name": "eloquent-poker",
   "version": "1.0.0",
-  "author": "Bailey Zhang",
+  "author": "TigressBailey<bailey.zhang1986@gmail.com>",
   "main": "src/index.js",
   "dependencies": {
     "@redux-saga/testing-utils": "^1.0.5",

@@ -73,8 +73,8 @@ module.exports = function (proxy, allowedHost) {
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https' && {
-      key: fs.readFileSync('/Users/bzhang2/.localhost-ssl/localhost.key'),
-      cert: fs.readFileSync('/Users/bzhang2/.localhost-ssl/localhost.crt'),
+      key: fs.readFileSync(process.env.REACT_APP_KEY),
+      cert: fs.readFileSync(process.env.REACT_APP_CERT),
     },
     host,
     overlay: false,
