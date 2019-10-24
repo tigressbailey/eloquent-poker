@@ -13,7 +13,7 @@ import { classNames } from 'classnames';
 const roomExpression = /^[A-Za-z0-9_]*[A-Za-z0-9][A-Za-z0-9_]*$/;
 const nameExpression = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
 
-let io = socketIOClient('localhost:4500', {
+let io = socketIOClient(process.env.REACT_APP_IO_URL, {
   autoConnect: false,
   reconnection: false,
   rejectUnauthorized: false,
