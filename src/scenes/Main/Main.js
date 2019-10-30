@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import qs from 'qs';
 import { Redirect } from 'react-router';
+import ReactGA from 'react-ga';
 import socketIOClient from 'socket.io-client';
 import { connect } from 'react-redux';
 import Message from '../../components/Message';
@@ -26,7 +27,7 @@ function validParam(param, expression) {
 }
 
 function Main(props) {
-  const { search } = props;
+  const { search, pathname } = props;
   let roomName, memberName;
 
   const [msg, setMsg] = useState(null);
@@ -43,6 +44,10 @@ function Main(props) {
 
   function shuffleHandler() {
     io.emit('shuffle');
+  }
+
+  function trackPageView(pathname, search) {
+    ReactGA.pageview(pathname + search);
   }
 
   io.once('connect', () => {
@@ -64,6 +69,9 @@ function Main(props) {
   });
 
   useEffect(() => {
+    ReactGA.initialize('UA-128279645-2');
+    trackPageView(pathname + search);
+
     if (!enableIO) {
       return;
     }
@@ -73,7 +81,7 @@ function Main(props) {
     return () => {
       io.removeAllListeners();
     };
-  }, []);
+  }, [pathname, search]);
 
   try {
     const { room, name } = qs.parse(search, {
@@ -190,6 +198,7 @@ function Main(props) {
 
 export const mapStateToProps = state => ({
   search: state.router.location.search,
+  pathname: state.router.pathname,
 });
 
 export default connect(mapStateToProps)(Main);
