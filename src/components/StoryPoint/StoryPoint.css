@@ -1,0 +1,17 @@
+.app {
+  .btn-poker {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 15px 10px 0;
+  }
+
+  .btn-poker.btn.btn-action.btn-sm {
+    font-size: 12px;
+  }
+
+  .btn-poker.btn-poker--active {
+    background: #4240d4;
+    border-color: #3634d2;
+    color: #fff;
+    box-shadow: 0 0 0 0.125rem rgba(87, 85, 217, .2);
+  }
+}

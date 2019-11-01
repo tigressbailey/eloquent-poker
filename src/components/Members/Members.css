@@ -11,7 +11,17 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    min-width: 160px;
+    min-width: 210px;
+  }
+
+  .member-name {
+    font-weight: 800;
+    font-weight: 800;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px .2rem;
+    transition: background .3s ease-in-out;
+    box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, .15);
   }
 
   .member .menu-item {
@@ -19,29 +29,16 @@
   }
 
   .member .emoji-poker {
-    font-size: 40px;
-  }
-
-  .tile.tile-centered .tile-content {
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    text-overflow: ellipsis;
-    height: 40px;
-    line-height: 40px;
-    font-size: 14px;
-  }
-
-  .tile.tile-centered .tile-content.badge::after {
-    transition: all .3s;
+    font-size: 50px;
   }
 
   .points {
     font-family: 'Montserrat', sans-serif;
-    font-size: 35px;
-    height: 80px;
+    font-size: 50px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, .15);
   }
 }

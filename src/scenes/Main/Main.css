@@ -18,15 +18,6 @@
     font-style: normal;
   }
 
-  .btn-poker {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0 15px 10px 0;
-  }
-
-  .btn-poker.btn.btn-action.btn-sm {
-    font-size: 12px;
-  }
-
   .sidebar-poker {
     min-width: 230px;
   }
