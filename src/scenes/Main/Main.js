@@ -21,18 +21,25 @@ let io = socketIOClient(process.env.REACT_APP_IO_URL, {
   secure: true,
 });
 let enableIO = false;
+let roomName, memberName;
 
 function validParam(param, expression) {
   return typeof param !== 'undefined' && expression.test(param);
 }
 
+io.on('connect', () => {
+  console.log('connect');
+
+  io.emit('attend', roomName, memberName);
+});
+
 function Main(props) {
-  const { search, pathname } = props;
-  let roomName, memberName;
+  const { search } = props;
 
   const [msg, setMsg] = useState(null);
   const [check, setCheck] = useState(false);
   const [members, setMembers] = useState([]);
+  // const [enableIO, setEnableIO] = useState(false);
 
   function voteHandler(points) {
     io.emit('vote', points);
@@ -46,13 +53,9 @@ function Main(props) {
     io.emit('shuffle');
   }
 
-  function trackPageView(pathname, search) {
-    ReactGA.pageview(pathname + search);
+  function trackPageView(search) {
+    ReactGA.pageview(search);
   }
-
-  io.once('connect', () => {
-    io.emit('attend', roomName, memberName);
-  });
 
   io.on('grooming', ({ check, members }) => {
     setCheck(check);
@@ -64,13 +67,14 @@ function Main(props) {
   });
 
   io.on('disconnect', () => {
-    io.removeAllListeners();
+    // io.removeAllListeners();
+    // enableIO = false;
     // setMsg('You are offline now');
   });
 
   useEffect(() => {
     ReactGA.initialize('UA-128279645-2');
-    trackPageView(pathname + search);
+    trackPageView(search);
 
     if (!enableIO) {
       return;
@@ -81,7 +85,7 @@ function Main(props) {
     return () => {
       io.removeAllListeners();
     };
-  }, [pathname, search]);
+  }, [search]);
 
   try {
     const { room, name } = qs.parse(search, {
@@ -198,7 +202,6 @@ function Main(props) {
 
 export const mapStateToProps = state => ({
   search: state.router.location.search,
-  pathname: state.router.pathname,
 });
 
 export default connect(mapStateToProps)(Main);
