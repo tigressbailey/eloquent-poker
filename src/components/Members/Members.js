@@ -1,7 +1,5 @@
 import React from 'react';
 import Flip from 'react-reveal/Flip';
-import Tada from 'react-reveal/Tada';
-import Zoom from 'react-reveal/Zoom';
 import './Members.css';
 
 function Members(props) {
@@ -10,28 +8,26 @@ function Members(props) {
 
   for (const key of Object.keys(members)) {
     const voted = typeof members[key].points !== 'undefined';
-    const nameClasses = `label ${
-      voted
-        ? 'label label-success member-name'
-        : 'label label-primary member-name'
+    const nameClasses = `label label-rounded ${
+      voted ? 'label-success member-name' : 'label-primary member-name'
     }`;
     const result = voted ? members[key].points : 'N/A';
 
     listItems.push(
-      <Flip left key={members[key].id.toString()}>
-        <div className="member">
-          <span className={nameClasses}>{members[key].name}</span>
-          <div className="card points">
-            {check ? (
-              <Tada>{result}</Tada>
-            ) : (
-              <Zoom>
-                <span className="emoji-poker">☕</span>
-              </Zoom>
-            )}
+      <div className="member" key={members[key].id.toString()}>
+        <span className={nameClasses}>{members[key].name}</span>
+        {check ? (
+          <Flip left>
+            <div className="poker-chip">
+              <span className="poker-chip__points">{result}</span>
+            </div>
+          </Flip>
+        ) : (
+          <div className="poker-chip">
+            <span className="poker-chip__points">☕</span>
           </div>
-        </div>
-      </Flip>,
+        )}
+      </div>,
     );
   }
 

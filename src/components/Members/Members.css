@@ -7,19 +7,19 @@
   }
 
   .member {
-    margin: 0 12px 20px 0;
+    margin: 0 60px 50px 0;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    min-width: 210px;
+    min-width: 160px;
   }
 
   .member-name {
     font-weight: 800;
     font-weight: 800;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
-    padding: 10px .2rem;
+    padding: 5px .2rem;
     transition: background .3s ease-in-out;
     box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, .15);
   }
@@ -28,17 +28,38 @@
     padding: 0;
   }
 
-  .member .emoji-poker {
-    font-size: 50px;
-  }
-
-  .points {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
-    height: 120px;
-    display: flex;
+  .poker-chip {
+    height: 140px;
+    width: 140px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 7px dashed rgba(86, 86, 217, .7);
+    transition: all 0.3s;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
     box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, .15);
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 800;
+    margin: 20px auto 0;
+  }
+
+  .poker-chip__points {
+    border: 3px dashed rgba(86, 86, 217, .7);
+    height: 120px;
+    color: rgba(0, 0, 0, .7);
+    width: 120px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 120px;
+  }
+
+  /* .spin */
+
+  .poker-chip:hover {
+    transform: rotate(20deg);
   }
 }
