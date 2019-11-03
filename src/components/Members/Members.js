@@ -1,5 +1,5 @@
 import React from 'react';
-import Flip from 'react-reveal/Flip';
+import ReactCardFlip from 'react-card-flip';
 import './Members.css';
 
 function Members(props) {
@@ -16,17 +16,14 @@ function Members(props) {
     listItems.push(
       <div className="member" key={members[key].id.toString()}>
         <span className={nameClasses}>{members[key].name}</span>
-        {check ? (
-          <Flip left>
-            <div className="poker-chip">
-              <span className="poker-chip__points">{result}</span>
-            </div>
-          </Flip>
-        ) : (
-          <div className="poker-chip">
+        <ReactCardFlip isFlipped={check}>
+          <div className="poker-chip front" key="front">
             <span className="poker-chip__points">☕</span>
           </div>
-        )}
+          <div className="poker-chip back" key="back">
+            <span className="poker-chip__points">{result}</span>
+          </div>
+        </ReactCardFlip>
       </div>,
     );
   }

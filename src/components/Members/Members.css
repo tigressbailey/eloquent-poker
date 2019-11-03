@@ -4,6 +4,7 @@
     flex-flow: row wrap;
     justify-content: flex-start;
     margin-left: 20px;
+    position: relative;
   }
 
   .member {
@@ -28,6 +29,12 @@
     padding: 0;
   }
 
+  .react-card-flip {
+    width: 140px;
+    height: 140px;
+    margin: 20px auto 0;
+  }
+
   .poker-chip {
     height: 140px;
     width: 140px;
@@ -40,11 +47,10 @@
     justify-content: center;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, .15);
+    box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, .3);
     cursor: pointer;
     font-size: 40px;
     font-weight: 800;
-    margin: 20px auto 0;
   }
 
   .poker-chip__points {
