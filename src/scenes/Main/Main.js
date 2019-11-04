@@ -104,7 +104,14 @@ function Main(props) {
         <div className="columns">
           <div className="column col-2 sidebar-poker">
             <section>
-              <h1 className="sitename">Eloquent Poker</h1>
+              <a
+                className="github-link"
+                rel="noopener noreferrer"
+                href="https://github.com/tigressbailey/eloquent-poker"
+                target="_blank"
+              >
+                <h1 className="sitename">Eloquent Poker</h1>
+              </a>
             </section>
             <Check
               check={check}

@@ -5,9 +5,36 @@
     color: rgba(0, 0, 0, .7);
   }
 
+  .github-link {
+    position: relative;
+    color: rgba(0, 0, 0, .7);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+
+  .github-link:before {
+    content: ' ';
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAABVlJREFUeJztm1uIVVUYgL+zx5x0Zo4zZpldxiYltasVpYxjmFERQhAV0RWh7DL4Ug8DQRe7oUZNmmC99mBQYEVk+FAaRTeCgvJSk9GJmpysRmvOwaxxpod/n+ac3dp7r3/fzg764Idhz7/+yzp77b3W+tcukD6dwGLgfGA+cBowE2gHml2dI8Ah4CegBOwFPgM+BH7IIMZEKQA9wEZgHzAeU74GNgBLXNu5pQPoA74hftJBndGH3D25YTqwDiiTXuJeGQHWIp3eMBxgNTBMdol75Veg140lU+YBH8UIPGn5ADgj1YxrWAlUUkwmqpSBW9NLG5qATTlINEyeIYUh0Qy8loPkbOUVYHKSyW/PQVJaeTOJTmjiv/XLe2UrMYfDszlIIq70R01+ZQ6CT0pu9kvSb249D/gUmBrQQWPAFcBh4BzgKlcSe/j4cAQZ39uBXUCr+3fQOqGMLMb22ThwsJvkvGdoewLwKPCbRXutHAQeBmYY/NrE+z6GTppkMNYLLDJc9/K24doB4CHk2fEEsKrGaQX4EvgW2I8sfw+7/5uCrClOArqQO3CK+78x4HngQWTabWKnRczdwF2uLV+mYz+3vy7EIciy+G7gTHRP4yZkWPW6gYdxk2XMPxOyklxnaWgcWKpIKG2WYx/3Y35GOtAtaXtSSSUay7CP+3dgWrVh7W25CmhRODU9jBrF8QrdNiRXYKIDCsgDQsO5Sv00OVupf6f3Qg/619KO6PEmzjvo419ca2CjsvFfwCWppqRjGTCKLoenag1od28fTzefSKxFl8OeasNOZcMfmZik5IkWpK6gyWWWg2csWLCZiRlcnqgAzynbdDvIIkHDFqV+lryo1F/oIOUqW0rIXD6vDACDCv0FDlKrs+ULVTiNYZdCt8tBCpW2DCmDaQT7FbozHXR1tlFlMI1AE2OHw0SJ2oY8vv68BO1ieWl2kA0HW1qVwTQCTYxjDrp3+qnKYBpBp0K34iB7ALbMUQaTNQXgdIV+2UH33pyhdJA184GiQn/QAb5TOlmu1M+SS5X6JQf4StnoBqV+lmhjGwC4Bt0KagxYkEy8iXIe+k2RqwFOjtBwazY5qXgDfR6zqo33Rmh8ffo5WWNbF6iVujXD0xEMjAAXppqWHRcT7cjOk7VGuiMYGEfKW5elmFwYlyP7/FFi/1cpbSCioaNIb2Y5TS4idf+jEWPebTLa56O8Byl49hP8rDgAPIAUONOiE1gD/BIQh43cazI+DXNZ+1XqCyi3IePfz/goUopeA1wJnBgx2QKy9liBVJo/Rl7BcRIfR4q/vner39byW8ApNXoXhXSCV7YhFV9bjkFK3nGTNckjQY7bkRKyqeEg9YuhWywdVqjvPFu6gD8STn4IqQ0Gck+Agc+p30CxOUEWeCAhhBciJuont9s4dZDjL35G7q/RLSLndIOcrtDn/Q/XKpILk50ovjeYi/9ZgWHqy+jNyLjyPpnLwMvEO9I+NyAhjYwgQ0pF0PRytUG/CSlTLwXOQh5kcWkLiEEjkaft/T4Gh8lmY+RYH/8aWR8nAAe5jU2GS8DCOMYtmOrj21a2kMB3RpORg4kmB38ixdILfBxptqdMtPj4tZHXSWYYAtIJL4U4PIScLn0X+AT43r1uOotoS2uIz6BfPo5fIw7Rls1xfoViBH/rSfnzuhvRHafTVJ68aDpghAw3aeYgt7pNYJpSlZd2Sx870FW5E8FBjpuFHUvRnD30clyI7SFketvQL0qLyPHTg5iDjPMm8OuAYWT2GbqwyZI24D5kA6UaaIl4v84k5FBW1d5uZDMj90XaRcitGWUZ7GU2cAey+fk/SfM3fwVWkQmXJ1MAAAAASUVORK5CYII=');
+    background-size: contain;
+    position: absolute;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    top: -8px;
+    right: -16px;
+    opacity: 0;
+    transition: opacity .2s ease-out;
+  }
+
+  .github-link:hover:before {
+    opacity: 1;
+  }
+
   .sitename {
     font-size: 28px;
     font-weight: 600;
+    margin-bottom: 0;
   }
 
   .quote-poker {
