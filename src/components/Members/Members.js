@@ -9,7 +9,7 @@ function Members(props) {
   for (const key of Object.keys(members)) {
     const voted = typeof members[key].points !== 'undefined';
     const nameClasses = `label label-rounded ${
-      voted ? 'label-success member-name' : 'label-primary member-name'
+      voted ? 'label-success member-name' : 'member-name'
     }`;
     const result = voted ? members[key].points : 'N/A';
 
