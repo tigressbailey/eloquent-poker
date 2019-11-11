@@ -1,0 +1,16 @@
+.app {
+  .bar {
+    margin: 8px 0 40px 10px;
+    font-family: 'Montserrat', sans-serif;
+    height: 1rem;
+
+    .bar-item {
+      line-height: 1rem;
+      transition: width 200ms ease-in-out;
+    }
+
+    .bar-item:nth-child(even) {
+      background: #817fe3;
+    }
+  }
+}

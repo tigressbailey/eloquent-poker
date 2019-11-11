@@ -8,6 +8,7 @@ import Message from '../../components/Message';
 import Check from '../../components/Check';
 import Members from '../../components/Members';
 import StoryPoint from '../../components/StoryPoint';
+import Bar from '../../components/Bar';
 
 import './Main.css';
 import { classNames } from 'classnames';
@@ -201,12 +202,26 @@ function Main(props) {
                 voteHandler={voteHandler}
               />
             </section>
+            {/* <section>
+              <div className="panel">
+                <div className="panel-header">
+                  <div className="panel-title h6">Activity</div>
+                </div>
+                <div className="panel-body">
+                  <div className="tile">
+                    <div className="tile-content">
+                      <p className="tile-subtitle">
+                        <Message message={msg} />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section> */}
           </div>
           <div className="column">
+            {check && <Bar members={members} />}
             <Members members={members} check={check} />
-            {/* <section>
-              <Message message={msg} />
-            </section> */}
           </div>
         </div>
       );

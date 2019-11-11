@@ -3,16 +3,16 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    margin-left: 20px;
+    margin-left: 10px;
     position: relative;
   }
 
   .member {
-    margin: 0 60px 50px 0;
+    margin: 0 35px 50px 0;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    min-width: 160px;
+    min-width: 150px;
   }
 
   .member-name {
@@ -30,14 +30,14 @@
   }
 
   .react-card-flip {
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     margin: 20px auto 0;
   }
 
   .poker-chip {
-    height: 140px;
-    width: 140px;
+    height: 130px;
+    width: 130px;
     background-color: #fff;
     border-radius: 50%;
     border: 7px dashed rgba(86, 86, 217, .7);
@@ -55,12 +55,12 @@
 
   .poker-chip__points {
     border: 3px dashed rgba(86, 86, 217, .7);
-    height: 120px;
+    height: 110px;
     color: rgba(0, 0, 0, .7);
-    width: 120px;
+    width: 110px;
     border-radius: 50%;
     text-align: center;
-    line-height: 120px;
+    line-height: 110px;
   }
 
   /* .spin */
