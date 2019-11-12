@@ -19,6 +19,8 @@ const nameExpression = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
 let io = socketIOClient(process.env.REACT_APP_IO_URL, {
   autoConnect: false,
   reconnection: true,
+  timeout: 10000, //before connect_error and connect_timeout are emitted.
+  transports: ['websocket'],
   rejectUnauthorized: false,
   secure: true,
 });
