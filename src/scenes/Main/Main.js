@@ -67,8 +67,8 @@ function Main(props) {
     setMembers(members);
   });
 
-  io.on('reset', ({ members, activeSp }) => {
-    setCheck(false);
+  io.on('reset', ({ check, members, activeSp }) => {
+    setCheck(check);
     setMembers(members);
     setActiveSp(activeSp);
   });
