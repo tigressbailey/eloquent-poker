@@ -9,6 +9,7 @@ import Check from '../../components/Check';
 import Members from '../../components/Members';
 import StoryPoint from '../../components/StoryPoint';
 import Bar from '../../components/Bar';
+import { storyPoints } from '../../utils/voteTypes';
 
 import './Main.css';
 import { classNames } from 'classnames';
@@ -41,7 +42,7 @@ function Main(props) {
   const [msg, setMsg] = useState(null);
   const [check, setCheck] = useState(false);
   const [members, setMembers] = useState([]);
-  const [activeSp, setActiveSp] = useState(undefined);
+  const [activeSp, setActiveSp] = useState('');
 
   function voteHandler(points) {
     setActiveSp(points);
@@ -53,7 +54,7 @@ function Main(props) {
   }
 
   function shuffleHandler() {
-    setActiveSp(undefined);
+    setActiveSp('');
     io.emit('shuffle');
   }
 
@@ -66,14 +67,11 @@ function Main(props) {
     setMembers(members);
   });
 
-  io.on('message', msg => {
-    // setMsg(msg);
+  io.on('reset', ({ members, activeSp }) => {
+    setCheck(false);
+    setMembers(members);
+    setActiveSp(activeSp);
   });
-
-  // io.on('disconnect', () => {
-  // io.removeAllListeners();
-  // setMsg('You are offline now');
-  // });
 
   useEffect(() => {
     ReactGA.initialize('UA-128279645-2');
@@ -102,6 +100,15 @@ function Main(props) {
       memberName = name;
 
       const roomTitle = room[0].toUpperCase() + room.slice(1);
+      const pointsItems = storyPoints.map(storyPoint => (
+        <StoryPoint
+          key={storyPoint.id}
+          sp={storyPoint.text}
+          defaultClasses={storyPoint.defaultClasses}
+          activeSp={activeSp}
+          voteHandler={voteHandler}
+        />
+      ));
 
       return (
         <div className="columns">
@@ -126,83 +133,7 @@ function Main(props) {
                 <cite className="cite-poker">🎪 {roomTitle}</cite>
                 <p>Hi, {name}.</p>
               </blockquote>
-              <StoryPoint
-                sp="0"
-                defaultClasses="btn btn-action btn-primary btn-sm s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="1/2"
-                defaultClasses="btn btn-action btn-primary btn-sm s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="1"
-                defaultClasses="btn btn-action btn-primary btn-sm s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="2"
-                defaultClasses="btn btn-action btn-primary btn-sm s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="3"
-                defaultClasses="btn btn-action btn-primary s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="5"
-                defaultClasses="btn btn-action btn-primary s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="8"
-                defaultClasses="btn btn-action btn-primary s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="13"
-                defaultClasses="btn btn-action btn-primary btn-lg s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="20"
-                defaultClasses="btn btn-action btn-primary btn-lg s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="40"
-                defaultClasses="btn btn-action btn-primary btn-lg s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
-              <StoryPoint
-                sp="?"
-                defaultClasses="btn btn-action btn-primary btn-lg s-circle btn-poker"
-                activeSp={activeSp}
-                check={check}
-                voteHandler={voteHandler}
-              />
+              {pointsItems}
             </section>
             {/* <section>
               <div className="panel">
