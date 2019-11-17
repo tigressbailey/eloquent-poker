@@ -1,0 +1,27 @@
+.app {
+  .modal-poker,
+  .btn-modal {
+    font-weight: 800;
+  }
+
+  .btn-modal {
+    width: 85px;
+  }
+
+  .section-modal {
+    margin-bottom: 20px;
+  }
+
+  .label.label-modal {
+    font-weight: bold;
+    padding: 2px 21px;
+  }
+
+  .form-group .form-input-hint {
+    display: none;
+  }
+
+  .form-group.has-error .form-input-hint {
+    display: block;
+  }
+}

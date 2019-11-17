@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import qs from 'qs';
-import { Redirect } from 'react-router';
-import ReactGA from 'react-ga';
+import { replace } from 'connected-react-router';
 import socketIOClient from 'socket.io-client';
 import { connect } from 'react-redux';
 import Message from '../../components/Message';
@@ -10,12 +9,15 @@ import Members from '../../components/Members';
 import StoryPoint from '../../components/StoryPoint';
 import Bar from '../../components/Bar';
 import { storyPoints } from '../../utils/voteTypes';
+import { initiateTracker, trackPageView } from '../../utils/pageView';
 
 import './Main.css';
 import { classNames } from 'classnames';
+import Modal from '../../components/Modal/Modal';
+import validParam from '../../utils/validParam';
 
-const roomExpression = /^[A-Za-z0-9_]*[A-Za-z0-9][A-Za-z0-9_]*$/;
-const nameExpression = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
+const roomExpression = /^[A-Za-z0-9_][A-Za-z0-9][A-Za-z0-9_]{1,20}$/;
+const nameExpression = /^[A-Za-z0-9 _][A-Za-z0-9][A-Za-z0-9 _]{1,20}$/;
 
 let io = socketIOClient(process.env.REACT_APP_IO_URL, {
   autoConnect: false,
@@ -26,23 +28,24 @@ let io = socketIOClient(process.env.REACT_APP_IO_URL, {
   secure: true,
 });
 let enableIO = false;
-let roomName, memberName;
-
-function validParam(param, expression) {
-  return typeof param !== 'undefined' && expression.test(param);
-}
+let roomName = 'not set';
+let memberName = 'Anonym';
 
 io.on('connect', () => {
   io.emit('attend', roomName, memberName);
 });
 
 function Main(props) {
-  const { search } = props;
+  const { search, join } = props;
 
   const [msg, setMsg] = useState(null);
   const [check, setCheck] = useState(false);
   const [members, setMembers] = useState([]);
   const [activeSp, setActiveSp] = useState('');
+
+  function joinRoom(room, name) {
+    join(room, name);
+  }
 
   function voteHandler(points) {
     setActiveSp(points);
@@ -57,11 +60,6 @@ function Main(props) {
     setActiveSp('');
     io.emit('shuffle');
   }
-
-  function trackPageView(search) {
-    ReactGA.pageview(search);
-  }
-
   io.on('grooming', ({ check, members }) => {
     setCheck(check);
     setMembers(members);
@@ -74,7 +72,7 @@ function Main(props) {
   });
 
   useEffect(() => {
-    ReactGA.initialize('UA-128279645-2');
+    initiateTracker();
     trackPageView(search);
 
     if (!enableIO) {
@@ -88,54 +86,59 @@ function Main(props) {
     };
   }, [search]);
 
-  try {
-    const { room, name } = qs.parse(search, {
-      ignoreQueryPrefix: true,
-      parameterLimit: 2,
-    });
+  const { room, name } = qs.parse(search, {
+    ignoreQueryPrefix: true,
+    parameterLimit: 2,
+  });
 
-    if (validParam(room, roomExpression) && validParam(name, nameExpression)) {
-      enableIO = true;
-      roomName = room.toLowerCase();
-      memberName = name;
+  if (validParam(room, roomExpression) && validParam(name, nameExpression)) {
+    enableIO = true;
+    roomName = room.toLowerCase();
+    memberName = name;
+  } else {
+    enableIO = false;
+  }
 
-      const roomTitle = room[0].toUpperCase() + room.slice(1);
-      const pointsItems = storyPoints.map(storyPoint => (
-        <StoryPoint
-          key={storyPoint.id}
-          sp={storyPoint.text}
-          defaultClasses={storyPoint.defaultClasses}
-          activeSp={activeSp}
-          voteHandler={voteHandler}
+  const roomTitle = roomName[0].toUpperCase() + roomName.slice(1);
+
+  const pointsItems = storyPoints.map(storyPoint => (
+    <StoryPoint
+      key={storyPoint.id}
+      sp={storyPoint.text}
+      defaultClasses={storyPoint.defaultClasses}
+      activeSp={activeSp}
+      voteHandler={voteHandler}
+    />
+  ));
+
+  return (
+    <div className="columns">
+      <Modal enableIO={enableIO} room={room} name={name} joinRoom={joinRoom} />
+      <div className="column col-2 sidebar-poker">
+        <section>
+          <a
+            className="github-link"
+            rel="noopener noreferrer"
+            href="https://github.com/tigressbailey/eloquent-poker"
+            target="_blank"
+          >
+            <h1 className="sitename">Eloquent Poker</h1>
+          </a>
+        </section>
+        <Check
+          check={check}
+          checkHandler={checkHandler}
+          shuffleHandler={shuffleHandler}
         />
-      ));
+        <section>
+          <blockquote className="quote-poker">
+            <cite className="cite-poker">🎪{roomTitle}</cite>
+            <p>Hi, {memberName}.</p>
+          </blockquote>
+          {pointsItems}
+        </section>
 
-      return (
-        <div className="columns">
-          <div className="column col-2 sidebar-poker">
-            <section>
-              <a
-                className="github-link"
-                rel="noopener noreferrer"
-                href="https://github.com/tigressbailey/eloquent-poker"
-                target="_blank"
-              >
-                <h1 className="sitename">Eloquent Poker</h1>
-              </a>
-            </section>
-            <Check
-              check={check}
-              checkHandler={checkHandler}
-              shuffleHandler={shuffleHandler}
-            />
-            <section>
-              <blockquote className="quote-poker">
-                <cite className="cite-poker">🎪 {roomTitle}</cite>
-                <p>Hi, {name}.</p>
-              </blockquote>
-              {pointsItems}
-            </section>
-            {/* <section>
+        {/* <section>
               <div className="panel">
                 <div className="panel-header">
                   <div className="panel-title h6">Activity</div>
@@ -151,23 +154,24 @@ function Main(props) {
                 </div>
               </div>
             </section> */}
-          </div>
-          <div className="column">
-            {check && <Bar members={members} />}
-            <Members members={members} check={check} />
-          </div>
-        </div>
-      );
-    }
-    throw Error('Invalid params');
-  } catch (error) {
-    enableIO = false;
-    return <Redirect to="/NotFound" />;
-  }
+      </div>
+      <div className="column">
+        {check && <Bar members={members} />}
+        <Members members={members} check={check} />
+      </div>
+    </div>
+  );
 }
 
-export const mapStateToProps = state => ({
+const mapStateToProps = state => ({
   search: state.router.location.search,
 });
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = dispatch => ({
+  join: (room, name) => dispatch(replace(`/?room=${room}&name=${name}`)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);
