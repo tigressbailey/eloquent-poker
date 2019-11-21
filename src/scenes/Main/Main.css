@@ -43,6 +43,12 @@
 
   .cite-poker {
     font-style: normal;
+    padding: 0;
+  }
+
+  .cite-poker.tooltip::after {
+    font-size: 11px;
+    line-height: 16px;
   }
 
   .sidebar-poker {

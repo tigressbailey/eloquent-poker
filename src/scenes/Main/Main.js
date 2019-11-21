@@ -3,6 +3,7 @@ import qs from 'qs';
 import { replace } from 'connected-react-router';
 import socketIOClient from 'socket.io-client';
 import { connect } from 'react-redux';
+import copy from 'copy-to-clipboard';
 import Message from '../../components/Message';
 import Check from '../../components/Check';
 import Members from '../../components/Members';
@@ -30,6 +31,7 @@ let io = socketIOClient(process.env.REACT_APP_IO_URL, {
 let enableIO = false;
 let roomName = 'not set';
 let memberName = 'Anonym';
+let roomURL = '';
 
 io.on('connect', () => {
   io.emit('attend', roomName, memberName);
@@ -60,6 +62,11 @@ function Main(props) {
     setActiveSp('');
     io.emit('shuffle');
   }
+
+  function copyURLHandler() {
+    copy(roomURL);
+  }
+
   io.on('grooming', ({ check, members }) => {
     setCheck(check);
     setMembers(members);
@@ -100,6 +107,7 @@ function Main(props) {
   }
 
   const roomTitle = roomName[0].toUpperCase() + roomName.slice(1);
+  roomURL = `https://eloquentpoker.com/?room=${roomName}`;
 
   const pointsItems = storyPoints.map(storyPoint => (
     <StoryPoint
@@ -132,7 +140,14 @@ function Main(props) {
         />
         <section>
           <blockquote className="quote-poker">
-            <cite className="cite-poker">🎪{roomTitle}</cite>
+            {/* <cite className="cite-poker">🎪{roomTitle}</cite> */}
+            <button
+              className="btn btn-link cite-poker tooltip tooltip-right"
+              data-tooltip="📋 Click to copy URL"
+              onClick={copyURLHandler}
+            >
+              🎪{roomTitle}
+            </button>
             <p>Hi, {memberName}.</p>
           </blockquote>
           {pointsItems}
