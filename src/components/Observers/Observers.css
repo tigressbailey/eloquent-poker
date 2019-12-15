@@ -1,0 +1,18 @@
+.app {
+  .observer-list {
+    margin-top: 20px;
+  }
+
+  .observer-title {
+    font-size: 14px;
+  }
+
+  .observer-label {
+    display: inline-block;
+    margin: 5px 10px 5px 0;
+    user-select: none;
+    font-weight: 800;
+    font-size: 12px;
+    box-shadow: 0 0.15rem 0.5rem rgba(48, 55, 66, .15);
+  }
+}

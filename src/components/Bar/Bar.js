@@ -15,10 +15,27 @@ function Bar(props) {
     '13': 0,
     '20': 0,
     '40': 0,
+    XS: 0,
+    S: 0,
+    M: 0,
+    L: 0,
+    XL: 0,
+    '5': 0,
+    '10': 0,
+    '15': 0,
+    '25': 0,
+    '30': 0,
+    '35': 0,
+    '40': 0,
+    '45': 0,
+    '50': 0,
     '?': 0,
   };
+
   const memberKeys = Object.keys(members);
-  const memberLength = memberKeys.length;
+  const memberLength = Object.entries(members).filter(member => {
+    return member[1].observer === '0';
+  }).length;
   const barItems = [];
 
   for (const key of memberKeys) {

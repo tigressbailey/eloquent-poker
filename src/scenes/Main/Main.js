@@ -9,16 +9,19 @@ import Check from '../../components/Check';
 import Members from '../../components/Members';
 import StoryPoint from '../../components/StoryPoint';
 import Bar from '../../components/Bar';
-import { storyPoints } from '../../utils/voteTypes';
+import voteTypes from '../../utils/voteTypes';
 import { initiateTracker, trackPageView } from '../../utils/pageView';
 
 import './Main.css';
 import { classNames } from 'classnames';
 import Modal from '../../components/Modal/Modal';
 import validParam from '../../utils/validParam';
+import Observers from '../../components/Observers';
 
 const roomExpression = /^[A-Za-z0-9_][A-Za-z0-9][A-Za-z0-9_]{1,20}$/;
 const nameExpression = /^[A-Za-z0-9 _][A-Za-z0-9][A-Za-z0-9 _]{1,20}$/;
+const typeExpression = /^(sp|ts|sq)$/;
+const observerExpression = /^(0|1)$/;
 
 let io = socketIOClient(process.env.REACT_APP_IO_URL, {
   autoConnect: false,
@@ -31,10 +34,12 @@ let io = socketIOClient(process.env.REACT_APP_IO_URL, {
 let enableIO = false;
 let roomName = 'not set';
 let memberName = 'Anonym';
+let typeValue = 'sp';
+let observerValue = false;
 let roomURL = '';
 
 io.on('connect', () => {
-  io.emit('attend', roomName, memberName);
+  io.emit('attend', roomName, typeValue, memberName, observerValue);
 });
 
 function Main(props) {
@@ -45,8 +50,8 @@ function Main(props) {
   const [members, setMembers] = useState([]);
   const [activeSp, setActiveSp] = useState('');
 
-  function joinRoom(room, name) {
-    join(room, name);
+  function joinRoom(room, type, name, observer) {
+    join(room, type, name, observer);
   }
 
   function voteHandler(points) {
@@ -93,35 +98,50 @@ function Main(props) {
     };
   }, [search]);
 
-  const { room, name } = qs.parse(search, {
+  const { room, type, name, observer } = qs.parse(search, {
     ignoreQueryPrefix: true,
-    parameterLimit: 2,
+    parameterLimit: 4,
   });
 
-  if (validParam(room, roomExpression) && validParam(name, nameExpression)) {
+  if (
+    validParam(room, roomExpression) &&
+    validParam(name, nameExpression) &&
+    validParam(type, typeExpression) &&
+    validParam(observer, observerExpression)
+  ) {
     enableIO = true;
     roomName = room.toLowerCase();
     memberName = name;
+    typeValue = type;
+    observerValue = observer;
   } else {
     enableIO = false;
   }
 
   const roomTitle = roomName[0].toUpperCase() + roomName.slice(1);
-  roomURL = `https://eloquentpoker.com/?room=${roomName}`;
+  roomURL = `https://eloquentpoker.com/?room=${roomName}&type=${typeValue}`;
 
-  const pointsItems = storyPoints.map(storyPoint => (
+  const pointsItems = voteTypes[typeValue].map(storyPoint => (
     <StoryPoint
       key={storyPoint.id}
       sp={storyPoint.text}
       defaultClasses={storyPoint.defaultClasses}
       activeSp={activeSp}
       voteHandler={voteHandler}
+      observer={observer}
     />
   ));
 
   return (
     <div className="columns">
-      <Modal enableIO={enableIO} room={room} name={name} joinRoom={joinRoom} />
+      <Modal
+        enableIO={enableIO}
+        room={room}
+        name={name}
+        type={type}
+        observer={observer}
+        joinRoom={joinRoom}
+      />
       <div className="column col-2 sidebar-poker">
         <section>
           <a
@@ -152,7 +172,7 @@ function Main(props) {
           </blockquote>
           {pointsItems}
         </section>
-
+        <Observers members={members} />
         {/* <section>
               <div className="panel">
                 <div className="panel-header">
@@ -183,7 +203,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  join: (room, name) => dispatch(replace(`/?room=${room}&name=${name}`)),
+  join: (room, type, name, observer) =>
+    dispatch(
+      replace(`/?room=${room}&type=${type}&name=${name}&observer=${observer}`),
+    ),
 });
 
 export default connect(

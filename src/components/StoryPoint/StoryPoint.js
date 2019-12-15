@@ -2,9 +2,13 @@ import React from 'react';
 import './StoryPoint.css';
 
 function StoryPoint(props) {
-  const { sp, voteHandler, activeSp, defaultClasses } = props;
+  const { sp, voteHandler, activeSp, defaultClasses, observer } = props;
   const spClasses =
-    sp !== activeSp ? defaultClasses : `${defaultClasses} btn-poker--active`;
+    observer === '1'
+      ? `${defaultClasses} disabled`
+      : sp !== activeSp
+      ? defaultClasses
+      : `${defaultClasses} btn-poker--active`;
 
   function activeHandler() {
     voteHandler(sp);
