@@ -20,7 +20,7 @@ import Observers from '../../components/Observers';
 
 const roomExpression = /^[A-Za-z0-9_][A-Za-z0-9][A-Za-z0-9_]{1,20}$/;
 const nameExpression = /^[A-Za-z0-9 _][A-Za-z0-9][A-Za-z0-9 _]{1,20}$/;
-const typeExpression = /^(sp|ts|sq)$/;
+const typeExpression = /^(sp|ts|sq|gs)$/;
 const observerExpression = /^(0|1)$/;
 
 let io = socketIOClient(process.env.REACT_APP_IO_URL, {
@@ -144,14 +144,16 @@ function Main(props) {
       />
       <div className="column col-2 sidebar-poker">
         <section>
-          <a
-            className="github-link"
-            rel="noopener noreferrer"
-            href="https://github.com/tigressbailey/eloquent-poker"
-            target="_blank"
-          >
-            <h1 className="sitename">Eloquent Poker</h1>
-          </a>
+          <h1 className="sitename">
+            <a
+              className="github-link"
+              rel="noopener noreferrer"
+              href="https://github.com/tigressbailey/eloquent-poker"
+              target="_blank"
+            >
+              Eloquent Poker
+            </a>
+          </h1>
         </section>
         <Check
           check={check}

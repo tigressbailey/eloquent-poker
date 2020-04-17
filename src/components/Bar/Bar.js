@@ -30,6 +30,9 @@ function Bar(props) {
     '45': 0,
     '50': 0,
     '?': 0,
+    '👍': 0,
+    '👎': 0,
+    '👊': 0,
   };
 
   const memberKeys = Object.keys(members);

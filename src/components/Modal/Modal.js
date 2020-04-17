@@ -6,7 +6,7 @@ const defaultClasses = 'modal';
 
 const roomExpression = /^[A-Za-z0-9_][A-Za-z0-9][A-Za-z0-9_]{1,20}$/;
 const nameExpression = /^[A-Za-z0-9 _][A-Za-z0-9][A-Za-z0-9 _]{1,20}$/;
-const typeExpression = /^(sp|ts|sq)$/;
+const typeExpression = /^(sp|ts|sq|gs)$/;
 const observerExpression = /^(0|1)$/;
 function Modal(props) {
   const { enableIO, room, name, type, observer, joinRoom } = props;
@@ -122,6 +122,15 @@ function Modal(props) {
                       onChange={e => setTypeValue(e.target.value)}
                     />
                     <i className="form-icon"></i> Sequence
+                  </label>
+                  <label className="form-radio form-inline">
+                    <input
+                      type="radio"
+                      name="votetype"
+                      value="gs"
+                      onChange={e => setTypeValue(e.target.value)}
+                    />
+                    <i className="form-icon"></i> Gesture
                   </label>
                 </section>
               )}

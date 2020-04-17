@@ -145,6 +145,23 @@ const voteTypes = {
       defaultClasses: 'btn btn-action btn-primary btn-lg s-circle btn-poker',
     },
   ],
+  gs: [
+    {
+      id: 'gs_thumbs_up',
+      text: '👍',
+      defaultClasses: 'btn btn-action btn-primary btn-lg s-circle btn-poker',
+    },
+    {
+      id: 'gs_thumbs_down',
+      text: '👎',
+      defaultClasses: 'btn btn-action btn-primary btn-lg s-circle btn-poker',
+    },
+    {
+      id: 'gs_fist_bump',
+      text: '👊',
+      defaultClasses: 'btn btn-action btn-primary btn-lg s-circle btn-poker',
+    },
+  ],
 };
 
 export default voteTypes;
