@@ -144,7 +144,7 @@ function Main(props) {
       />
       <div className="column sidebar-poker">
         <section>
-          <h1 className="sitename">
+          <h2 className="sitename">
             <a
               className="github-link"
               rel="noopener noreferrer"
@@ -153,7 +153,7 @@ function Main(props) {
             >
               Eloquent Poker
             </a>
-          </h1>
+          </h2>
         </section>
         <Check
           check={check}
