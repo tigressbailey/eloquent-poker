@@ -11,8 +11,7 @@ export function NotFound() {
         We are unable to find the page you are looking for.
       </p>
       <p className="empty-subtitle">
-        The URL should be like
-        https://eloquentpoker.com/?room=platform&name=John
+        The URL should be like https://eloquentpoker.com/?room=platform&type=sp
       </p>
     </div>
   );
