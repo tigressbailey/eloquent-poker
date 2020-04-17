@@ -1,8 +1,11 @@
+![Logo](public/android-chrome-192x192.png)
 # Eloquent Poker
 
 Open source planning poker with the minimalist style.
 
-[Site](https://eloquentpoker.com)
+![Screenshot](public/eloquentpoker-capture.gif)
+
+[Get started with EloquentPoker.com](https://eloquentpoker.com)
 
 ## Usage
 
@@ -10,12 +13,13 @@ Open source planning poker with the minimalist style.
 
 1.  Visit [eloquentpoker.com](https://eloquentpoker.com)
 
-2.  Add `room` and `name`.
-    For example, https://eloquentpoker.com/?room=Jungle&name=Tiger
-    That's it.
-    You are able to estimate the tasks.
+2.  Input `room`, `name`, `vote type` and `observe mode`.
+    You've successfully created a room.
 
-3.  Save this URL to your bookmarks.
+3.  Invite your team mates by clicking the room URL.
+    The whole team is able to estimate the tasks.
+
+4.  Save this URL to your bookmarks.
     Next time you will be ready by clicking the bookmark.
 
 ## Contributing
