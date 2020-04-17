@@ -67,9 +67,7 @@ function Modal(props) {
       <div className="modal-overlay"></div>
       <div className="modal-container">
         <div className="modal-header">
-          <h1 className="modal-title h4 modal-poker">
-            Online planning poker - {generalInfo.title}
-          </h1>
+          <h1 className="modal-title h4 modal-poker">{generalInfo.title}</h1>
         </div>
         <div className="modal-body">
           <div className="content">
