@@ -130,7 +130,7 @@ function Modal(props) {
                       value="gs"
                       onChange={e => setTypeValue(e.target.value)}
                     />
-                    <i className="form-icon"></i> Gesture
+                    <i className="form-icon"></i> Temp Check
                   </label>
                 </section>
               )}
