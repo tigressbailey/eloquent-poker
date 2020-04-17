@@ -142,7 +142,7 @@ function Main(props) {
         observer={observer}
         joinRoom={joinRoom}
       />
-      <div className="column col-2 sidebar-poker">
+      <div className="column sidebar-poker">
         <section>
           <h1 className="sitename">
             <a

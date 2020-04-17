@@ -51,6 +51,7 @@
   }
 
   .sidebar-poker {
-    min-width: 230px;
+    flex: 0 0 17%;
+    min-width: 238px;
   }
 }
