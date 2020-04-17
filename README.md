@@ -1,9 +1,10 @@
-![Logo](public/android-chrome-192x192.png)
+<img src="public/android-chrome-512x512.png" width="257" />
+
 # Eloquent Poker
 
 Open source planning poker with the minimalist style.
 
-![Screenshot](public/eloquentpoker-capture.gif)
+<img src="public/eloquentpoker-capture.gif" width="700" />
 
 [Get started with EloquentPoker.com](https://eloquentpoker.com)
 
