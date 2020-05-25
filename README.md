@@ -1,8 +1,6 @@
 <img src="public/android-chrome-512x512.png" width="257" />
 
-# Eloquent Poker
-
-Open source planning poker with the minimalist style.
+# Eloquent Poker - Online planning poker
 
 <img src="public/eloquentpoker-capture.gif" width="700" />
 
